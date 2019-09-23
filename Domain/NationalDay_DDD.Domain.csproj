@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NationalDay_DDD.Core\NationalDay_DDD.Core.csproj" />
+  </ItemGroup>
+
 </Project>

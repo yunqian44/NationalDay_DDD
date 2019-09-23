@@ -4,8 +4,11 @@ using System.Text;
 
 namespace NationalDay_DDD.Core.Models
 {
+    /// <summary>
+    /// 定义领域实体基类接口
+    /// </summary>
     public interface IEntity
     {
-        int Id { get; set; }
+        int Id { get;}
     }
 }

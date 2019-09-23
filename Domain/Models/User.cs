@@ -1,25 +1,26 @@
-﻿using System;
+﻿using NationalDay_DDD.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NationalDay_DDD.Domain.Model
 {
-    public partial class User
+    public partial class User: AggregateRoot<User>
     {
         protected User()
         {
 
         }
 
-        public User(int id,string name)
+        public User(int id,string name,string email,string phone,DateTime birthday,string address)
         {
-
+            Id = id;
+            Name = name;
+            Email = email;
+            Phone = phone;
+            Birthday = birthday;
+            Address = address;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Id { get;private set; }
 
         /// <summary>
         /// 姓名
