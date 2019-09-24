@@ -1,4 +1,5 @@
 ﻿using NationalDay_DDD.Core.Models;
+using NationalDay_DDD.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace NationalDay_DDD.Domain.Model
 
         }
 
-        public User(int id,string name,string email,string phone,DateTime birthday,string address)
+        public User(int id,string name,string email,string phone,DateTime birthday,Address address)
         {
             Id = id;
             Name = name;
@@ -45,7 +46,7 @@ namespace NationalDay_DDD.Domain.Model
         /// <summary>
         /// 住址
         /// </summary>
-        public string Address { get;private set; }
+        public Address Address { get;private set; }
 
     }
 }
