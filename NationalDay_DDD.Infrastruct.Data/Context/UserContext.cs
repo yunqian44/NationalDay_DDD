@@ -12,7 +12,7 @@ namespace NationalDay_DDD.Infrastruct.Data.Context
     /// <summary>
     /// 定义核心子领域-学习上下文
     /// </summary>
-    public class StudyContext:DbContext
+    public class UserContext:DbContext
     {
         public DbSet<User> Users { get; set; }
 
