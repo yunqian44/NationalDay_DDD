@@ -4,15 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NationalDay_DDD.Application.Interface;
 
 namespace NationalDay_DDD.WebApp.Controllers
 {
     public class UserController : Controller
     {
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            return View(_userService.GetAll());
         }
 
         // GET: User/Details/5
