@@ -14,6 +14,11 @@ namespace NationalDay_DDD.Infrastruct.Data.Context
     /// </summary>
     public class UserContext:DbContext
     {
+
+        public UserContext(DbContextOptions<UserContext> options)
+            : base(options)
+        {
+        }
         public DbSet<User> Users { get; set; }
 
         /// <summary>
@@ -40,7 +45,11 @@ namespace NationalDay_DDD.Infrastruct.Data.Context
                 .Build();
 
             // 定义要使用的数据库
-            optionsBuilder.UseMySQL(config.GetConnectionString("DefaultConnection"));
+            //optionsBuilder.UseMySql(config.GetConnectionString("DefaultConnection"));
+
+            var optionBuilder= new DbContextOptionsBuilder<UserContext>().UseMySql(config.GetConnectionString("DefaultConnection"));
+
+            var context = new UserContext(optionBuilder.Options);
         }
     }
 }

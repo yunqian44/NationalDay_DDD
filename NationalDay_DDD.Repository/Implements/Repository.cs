@@ -11,18 +11,24 @@ namespace NationalDay_DDD.Repository.Implements
     /// 基类仓储
     /// </summary>
     /// <typeparam name="TAggregateRoot"></typeparam>
-    public abstract class Repository<TAggregateRoot> where TAggregateRoot : IAggregateRoot
+    public abstract class Repository<TAggregateRoot> where TAggregateRoot : class
     {
         /// <summary>
         /// 数据上下文
         /// </summary>
         public DbContext CurrentContext { get; set; }
 
-        protected abstract void GetContext();
+        //protected abstract void GetContext();
 
-        public Repository()
+        //public Repository()
+        //{
+        //    GetContext();
+        //}
+        protected readonly DbSet<TAggregateRoot> DbSet;
+
+        public Repository(DbContext context)
         {
-            GetContext();
+            CurrentContext = context;
         }
 
         public TAggregateRoot Get(int id)
@@ -45,9 +51,9 @@ namespace NationalDay_DDD.Repository.Implements
 
         }
 
-        public IEnumerable<TAggregateRoot> GetAll()
+        public virtual IEnumerable<TAggregateRoot> GetAll()
         {
-            return null;
+            return CurrentContext.Set<TAggregateRoot>();
         }
 
         public IEnumerable<TAggregateRoot> Find(Expression<Func<TAggregateRoot, bool>> conditions)

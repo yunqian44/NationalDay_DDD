@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NationalDay_DDD.Infrastruct.Data.Context;
+using NationalDay_DDD.WebApp.Extensions;
 
 namespace NationalDay_DDD.WebApp
 {
@@ -36,6 +39,10 @@ namespace NationalDay_DDD.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // .NET Core 原生依赖注入
+            // 单写一层用来添加依赖项，从展示层 Presentation 中隔离
+            NativeInjectorBootStrapper.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

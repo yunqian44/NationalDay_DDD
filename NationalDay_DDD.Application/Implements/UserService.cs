@@ -26,6 +26,11 @@ namespace NationalDay_DDD.Application.Implements
             GC.SuppressFinalize(this);
         }
 
+        public UserService(IUserRepository userRepository) 
+        {
+            _UserRepository = userRepository;
+        }
+
         public IEnumerable<UserViewModel> GetAll()
         {
             //第一种写法 Map
