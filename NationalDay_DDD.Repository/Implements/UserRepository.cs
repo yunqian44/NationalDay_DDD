@@ -11,11 +11,6 @@ namespace NationalDay_DDD.Repository.Implements
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public UserRepository(UserContext context)
         : base(context)
         {
@@ -26,10 +21,5 @@ namespace NationalDay_DDD.Repository.Implements
         {
             throw new NotImplementedException();
         }
-
-        //protected override void GetContext()
-        //{
-        //    CurrentContext = AbstractCurrentFactory.GetUserCurrentDbContext();
-        //}
     }
 }

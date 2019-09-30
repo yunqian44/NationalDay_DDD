@@ -1,7 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,18 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\NationalDay_DDD.Domain.csproj" />
+    <ProjectReference Include="..\NationalDay_DDD.Infrastruct.Data\NationalDay_DDD.Infrastruct.csproj" />
   </ItemGroup>
 
 </Project>

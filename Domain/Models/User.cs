@@ -8,7 +8,7 @@ namespace NationalDay_DDD.Domain.Model
 {
     public partial class User: AggregateRoot<User>
     {
-        protected User()
+        public User()
         {
 
         }

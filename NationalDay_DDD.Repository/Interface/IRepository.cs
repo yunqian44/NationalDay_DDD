@@ -6,44 +6,45 @@ using System.Text;
 
 namespace NationalDay_DDD.Repository.Interface
 {
-    public interface IRepository<TAggregateRoot>:IDisposable where TAggregateRoot : IAggregateRoot
+    public interface IRepository<TEntity> :IDisposable where TEntity : class
+
     {
         /// <summary>
         /// 根据Id获取对象
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TAggregateRoot Get(int id);
+        TEntity Get(int id);
 
         /// <summary>
         /// 添加
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        void Add(TAggregateRoot aggregateRoot);
+        void Add(TEntity aggregateRoot);
 
         /// <summary>
         /// 更新
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        void Update(TAggregateRoot aggregateRoot);
+        void Update(TEntity aggregateRoot);
 
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        void Remove(TAggregateRoot aggregateRoot);
+        void Remove(TEntity aggregateRoot);
 
         /// <summary>
         /// 查询全部
         /// </summary>
         /// <returns></returns>
-        IEnumerable<TAggregateRoot> GetAll();
+        IEnumerable<TEntity> GetAll();
 
         /// <summary>
         /// 查询根据条件
         /// </summary>
         /// <param name="conditions"></param>
         /// <returns></returns>
-        IEnumerable<TAggregateRoot> Find(Expression<Func<TAggregateRoot, bool>> conditions);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> conditions);
     }
 }

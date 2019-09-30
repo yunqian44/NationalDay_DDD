@@ -26,9 +26,10 @@ namespace NationalDay_DDD.Application.Implements
             GC.SuppressFinalize(this);
         }
 
-        public UserService(IUserRepository userRepository) 
+        public UserService(IUserRepository userRepository,IMapper mapper) 
         {
             _UserRepository = userRepository;
+            _mapper = mapper;
         }
 
         public IEnumerable<UserViewModel> GetAll()

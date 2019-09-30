@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using NationalDay_DDD.Application.ViewModel;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NationalDay_DDD.Application.Interface;
 
@@ -12,6 +7,7 @@ namespace NationalDay_DDD.WebApp.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+
         public UserController(IUserService userService)
         {
             _userService = userService;

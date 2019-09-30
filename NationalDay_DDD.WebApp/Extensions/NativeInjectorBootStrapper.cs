@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NationalDay_DDD.Application.Implements;
 using NationalDay_DDD.Application.Interface;
@@ -18,7 +19,7 @@ namespace NationalDay_DDD.WebApp.Extensions
         {
 
             // ASP.NET HttpContext dependency
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // ASP.NET Authorization Polices
             //services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
@@ -57,7 +58,8 @@ namespace NationalDay_DDD.WebApp.Extensions
 
             // 注入 基础设施层 - 数据层
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<UserContext>();
+            //services.AddDbContext<UserContext>(options =>
+            //options.UseMySQL(Configuration.GetConnectionString("SchoolConnection")));
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 

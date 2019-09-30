@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<NationalDay_DDD.Application.ViewModel.UserViewModel>
 
 @{
-    ViewData["title"] = "用户管理";
+    Layout = null;
+    ViewData["Title"] = "用户管理";
 }
 <div>
     <h2>@ViewData["Title"]</h2>
@@ -50,6 +51,11 @@
                         @Html.DisplayFor(modelItem => item.BirthDate)
                     </td>
                     <td>
+                        @*@Html.DisplayFor(modelItem => item.Address.Province)
+                            @Html.DisplayFor(modelItem => item.Address.City)
+                            @Html.DisplayFor(modelItem => item.Address.County)
+                            @Html.DisplayFor(modelItem => item.Address.Street)*@
+
                         @Html.DisplayFor(modelItem => item.Province)
                         @Html.DisplayFor(modelItem => item.County)
                         @Html.DisplayFor(modelItem => item.City)

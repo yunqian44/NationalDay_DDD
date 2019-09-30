@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NationalDay_DDD.Core.Models;
+using NationalDay_DDD.Domain.Model;
+using NationalDay_DDD.Infrastruct.Data.Context;
+using NationalDay_DDD.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -11,54 +14,56 @@ namespace NationalDay_DDD.Repository.Implements
     /// 基类仓储
     /// </summary>
     /// <typeparam name="TAggregateRoot"></typeparam>
-    public abstract class Repository<TAggregateRoot> where TAggregateRoot : class
+    public abstract class Repository<TEntity> :IRepository<TEntity> where TEntity : class
     {
-        /// <summary>
-        /// 数据上下文
-        /// </summary>
-        public DbContext CurrentContext { get; set; }
+        protected readonly UserContext Db;
 
-        //protected abstract void GetContext();
+        protected readonly DbSet<TEntity> DbSet;
 
-        //public Repository()
-        //{
-        //    GetContext();
-        //}
-        protected readonly DbSet<TAggregateRoot> DbSet;
-
-        public Repository(DbContext context)
+        public Repository(UserContext context)
         {
-            CurrentContext = context;
+            Db = context;
         }
 
-        public TAggregateRoot Get(int id)
+        public TEntity Get(int id)
         {
-            return default(TAggregateRoot);
+            return default(TEntity);
         }
 
-        public void Add(TAggregateRoot aggregateRoot)
+        public void Add(TEntity aggregateRoot)
         {
 
         }
 
-        public void Update(TAggregateRoot aggregateRoot)
+        public void Update(TEntity aggregateRoot)
         {
 
         }
 
-        public void Remove(TAggregateRoot aggregateRoot)
+        public void Remove(TEntity aggregateRoot)
         {
 
         }
 
-        public virtual IEnumerable<TAggregateRoot> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            return CurrentContext.Set<TAggregateRoot>();
+            return DbSet;
         }
 
-        public IEnumerable<TAggregateRoot> Find(Expression<Func<TAggregateRoot, bool>> conditions)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> conditions)
         {
             return null;
+        }
+
+        public int SaveChanges()
+        {
+            return Db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Db.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

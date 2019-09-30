@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.Domain", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.Infrastruct", "NationalDay_DDD.Infrastruct.Data\NationalDay_DDD.Infrastruct.csproj", "{65999DD8-ACEA-4DA2-8C0F-8A58434D5E20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.WebApp", "NationalDay_DDD.WebApp\NationalDay_DDD.WebApp.csproj", "{B8EDBD58-835C-4D4D-BC93-9A9961954897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.Repository", "NationalDay_DDD.Repository\NationalDay_DDD.Repository.csproj", "{39505EE3-54BB-4B78-B734-1EC792C13C8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NationalDay_DDD.Repository", "NationalDay_DDD.Repository\NationalDay_DDD.Repository.csproj", "{39505EE3-54BB-4B78-B734-1EC792C13C8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.WebApp", "NationalDay_DDD.WebApp\NationalDay_DDD.WebApp.csproj", "{E8DDA581-979D-4714-BB1C-8690C4C67438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NationalDay_DDD.UTest", "NationalDay_DDD\NationalDay_DDD.UTest.csproj", "{011FBED8-8112-455E-815F-2FE74B6A92E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +39,18 @@ Global
 		{65999DD8-ACEA-4DA2-8C0F-8A58434D5E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65999DD8-ACEA-4DA2-8C0F-8A58434D5E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65999DD8-ACEA-4DA2-8C0F-8A58434D5E20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8EDBD58-835C-4D4D-BC93-9A9961954897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8EDBD58-835C-4D4D-BC93-9A9961954897}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8EDBD58-835C-4D4D-BC93-9A9961954897}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8EDBD58-835C-4D4D-BC93-9A9961954897}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39505EE3-54BB-4B78-B734-1EC792C13C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39505EE3-54BB-4B78-B734-1EC792C13C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39505EE3-54BB-4B78-B734-1EC792C13C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39505EE3-54BB-4B78-B734-1EC792C13C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8DDA581-979D-4714-BB1C-8690C4C67438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8DDA581-979D-4714-BB1C-8690C4C67438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8DDA581-979D-4714-BB1C-8690C4C67438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8DDA581-979D-4714-BB1C-8690C4C67438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NationalDay_DDD.Infrastruct.Data.Context;
 
-namespace NationalDay_DDD.Infrastruct.Data.Migrations
+namespace NationalDay_DDD.Infrastruct.Migrations
 {
     [DbContext(typeof(UserContext))]
     partial class UserContextModelSnapshot : ModelSnapshot
@@ -14,7 +14,7 @@ namespace NationalDay_DDD.Infrastruct.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity("NationalDay_DDD.Domain.Model.User", b =>
                 {
