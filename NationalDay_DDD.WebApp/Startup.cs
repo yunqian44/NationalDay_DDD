@@ -46,9 +46,7 @@ namespace NationalDay_DDD.WebApp
             // 注入 Infra - Data 基础设施数据层
             services.AddScoped<IUserRepository, UserRepository>();
 
-            var ss = Configuration.GetConnectionString("DefaultConnection");
-
-            services.AddDbContext<UserContext>();//上下文
+            services.AddDbContext<UserContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

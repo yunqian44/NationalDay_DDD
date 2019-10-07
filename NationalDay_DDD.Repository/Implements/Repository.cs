@@ -23,6 +23,7 @@ namespace NationalDay_DDD.Repository.Implements
         public Repository(UserContext context)
         {
             Db = context;
+            DbSet = Db.Set<TEntity>();
         }
 
         public TEntity Get(int id)

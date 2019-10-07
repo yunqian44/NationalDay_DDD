@@ -21,4 +21,11 @@
     <ProjectReference Include="..\NationalDay_DDD.Application\NationalDay_DDD.Application.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
