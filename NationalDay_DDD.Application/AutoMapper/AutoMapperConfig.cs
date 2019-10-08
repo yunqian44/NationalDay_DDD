@@ -19,7 +19,7 @@ namespace NationalDay_DDD.Application.AutoMapper
                 //这个是领域模型 -> 视图模型的映射，是 读命令
                 cfg.AddProfile(new DomainToViewModelMappingProfile());
                 //这里是视图模型 -> 领域模式的映射，是 写 命令
-                //cfg.AddProfile(new ViewModelToDomainMappingProfile());
+                cfg.AddProfile(new ViewModelToDomainMappingProfile());
             });
         }
     }

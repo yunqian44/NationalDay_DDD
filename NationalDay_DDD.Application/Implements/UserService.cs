@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Application.ViewModel;
+using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,9 @@ namespace NationalDay_DDD.Application.Implements
 
         public void Register(UserViewModel userViewModel)
         {
-            throw new NotImplementedException();
+            _UserRepository.Add(_mapper.Map<User>(userViewModel));
+
+            _UserRepository.SaveChanges();
         }
 
         public void Remove(int id)

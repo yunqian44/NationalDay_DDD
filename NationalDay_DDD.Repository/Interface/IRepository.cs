@@ -46,5 +46,12 @@ namespace NationalDay_DDD.Repository.Interface
         /// <param name="conditions"></param>
         /// <returns></returns>
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> conditions);
+
+
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <returns></returns>
+        int SaveChanges();
     }
 }

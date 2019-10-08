@@ -20,8 +20,6 @@ namespace NationalDay_DDD.Application.AutoMapper
                 .ForMember(d => d.City, o => o.MapFrom(s => s.Address.City))
                 .ForMember(d => d.Street, o => o.MapFrom(s => s.Address.Street))
                 ;
-
-
         }
     }
 }

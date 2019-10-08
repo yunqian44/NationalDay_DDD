@@ -26,22 +26,22 @@ namespace NationalDay_DDD.Repository.Implements
             DbSet = Db.Set<TEntity>();
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return default(TEntity);
         }
 
-        public void Add(TEntity aggregateRoot)
+        public virtual void Add(TEntity aggregateRoot)
+        {
+            DbSet.Add(aggregateRoot);
+        }
+
+        public virtual void Update(TEntity aggregateRoot)
         {
 
         }
 
-        public void Update(TEntity aggregateRoot)
-        {
-
-        }
-
-        public void Remove(TEntity aggregateRoot)
+        public virtual void Remove(TEntity aggregateRoot)
         {
 
         }
@@ -51,7 +51,7 @@ namespace NationalDay_DDD.Repository.Implements
             return DbSet;
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> conditions)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> conditions)
         {
             return null;
         }

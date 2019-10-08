@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NationalDay_DDD.Application.Interface;
+using NationalDay_DDD.Application.ViewModel;
+using NationalDay_DDD.Domain.Commands;
+using System.Collections.Generic;
 
 namespace NationalDay_DDD.WebApp.Controllers
 {
@@ -34,13 +37,36 @@ namespace NationalDay_DDD.WebApp.Controllers
         // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(UserViewModel userViewModel)
         {
             try
             {
                 // TODO: Add insert logic here
+                ViewBag.ErrorData = null;
+                // 视图模型验证
+                if (!ModelState.IsValid)
+                    return View(userViewModel);
 
-                return RedirectToAction(nameof(Index));
+                //添加命令验证，采用构造函数方法实例
+                var registerStudentCommand = new RegisterUserCommand(userViewModel.Name, userViewModel.Email, userViewModel.BirthDate, userViewModel.Phone);
+
+                //如果命令无效，证明有错误
+                if (!registerStudentCommand.IsValid())
+                {
+                    List<string> errorInfo = new List<string>();
+                    //获取到错误，请思考这个Result从哪里来的 
+                    foreach (var error in registerStudentCommand.ValidationResult.Errors)
+                    {
+                        errorInfo.Add(error.ErrorMessage);
+                    }
+                    //对错误进行记录，还需要抛给前台
+                    ViewBag.ErrorData = errorInfo;
+                    return View(userViewModel);
+                }
+                // 执行添加方法
+                _userService.Register(userViewModel);
+                ViewBag.Sucesso = "用户注册成功!";
+                return View(userViewModel);
             }
             catch
             {
