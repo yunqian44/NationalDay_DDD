@@ -42,27 +42,30 @@ namespace NationalDay_DDD.WebApp.Controllers
             try
             {
                 // TODO: Add insert logic here
-                ViewBag.ErrorData = null;
+                //ViewBag.ErrorData = null;
                 // 视图模型验证
                 if (!ModelState.IsValid)
                     return View(userViewModel);
 
-                //添加命令验证，采用构造函数方法实例
-                var registerStudentCommand = new RegisterUserCommand(userViewModel.Name, userViewModel.Email, userViewModel.BirthDate, userViewModel.Phone);
+                #region 删除命令领域模型
+                ////添加命令验证，采用构造函数方法实例
+                //var registerStudentCommand = new RegisterUserCommand(userViewModel.Name, userViewModel.Email, userViewModel.BirthDate, userViewModel.Phone);
 
-                //如果命令无效，证明有错误
-                if (!registerStudentCommand.IsValid())
-                {
-                    List<string> errorInfo = new List<string>();
-                    //获取到错误，请思考这个Result从哪里来的 
-                    foreach (var error in registerStudentCommand.ValidationResult.Errors)
-                    {
-                        errorInfo.Add(error.ErrorMessage);
-                    }
-                    //对错误进行记录，还需要抛给前台
-                    ViewBag.ErrorData = errorInfo;
-                    return View(userViewModel);
-                }
+                ////如果命令无效，证明有错误
+                //if (!registerStudentCommand.IsValid())
+                //{
+                //    List<string> errorInfo = new List<string>();
+                //    //获取到错误，请思考这个Result从哪里来的 
+                //    foreach (var error in registerStudentCommand.ValidationResult.Errors)
+                //    {
+                //        errorInfo.Add(error.ErrorMessage);
+                //    }
+                //    //对错误进行记录，还需要抛给前台
+                //    ViewBag.ErrorData = errorInfo;
+                //    return View(userViewModel);
+                //} 
+                #endregion
+
                 // 执行添加方法
                 _userService.Register(userViewModel);
                 ViewBag.Sucesso = "用户注册成功!";

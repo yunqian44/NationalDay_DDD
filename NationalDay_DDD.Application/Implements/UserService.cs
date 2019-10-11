@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Application.ViewModel;
+using NationalDay_DDD.Core.Bus;
+using NationalDay_DDD.Domain.Commands;
 using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Repository.Interface;
 using System;
@@ -22,15 +24,19 @@ namespace NationalDay_DDD.Application.Implements
         // 用来进行DTO
         private readonly IMapper _mapper;
 
+        //中介者 总线
+        private readonly IMediatorHandler _bus;
+
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
 
-        public UserService(IUserRepository userRepository,IMapper mapper) 
+        public UserService(IUserRepository userRepository,IMapper mapper, IMediatorHandler bus) 
         {
             _UserRepository = userRepository;
             _mapper = mapper;
+            _bus = bus;
         }
 
         public IEnumerable<UserViewModel> GetAll()
@@ -51,8 +57,21 @@ namespace NationalDay_DDD.Application.Implements
 
         public void Register(UserViewModel userViewModel)
         {
-            _UserRepository.Add(_mapper.Map<User>(userViewModel));
 
+            //RegisterUserCommand registerUserCommand = new RegisterUserCommand(userViewModel.........ewModel.Phone);
+            ////如果命令无效，证明有错误
+            //if (!registerUserCommand.IsValid())
+            //{
+            //    List<string> errorInfo = new List<string>();
+            //    //获取到错误，请思考这个Result从哪里来的 
+
+            //    //.....
+
+            //    //对错误进行记录，还需要抛给前台
+            //    ViewBag.ErrorData = errorInfo;
+            //}
+
+            _UserRepository.Add(_mapper.Map<User>(userViewModel));
             _UserRepository.SaveChanges();
         }
 
