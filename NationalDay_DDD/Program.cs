@@ -1,6 +1,7 @@
 ﻿using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Infrastruct.Data.Context;
 using System;
+using System.Collections.Generic;
 
 namespace NationalDay_DDD
 {
@@ -19,8 +20,8 @@ namespace NationalDay_DDD
 
             //将两个对象赋值给安理会
             //具体的中介者必须知道全部的对象
-            UNSC.Colleague1 = c1;
-            UNSC.Colleague2 = c2;
+            UNSC.Register(c1);
+            UNSC.Register(c2);
 
             //美国发表声明，伊拉克接收到
             c1.Declare("不准研制核武器，否则要发动战争！");
@@ -43,6 +44,8 @@ namespace NationalDay_DDD
             /// <param name="message">声明信息</param>
             /// <param name="colleague">声明国家</param>
             public abstract void Declare(string message, Country colleague);
+
+            public abstract void Register(Country coun);
         }
 
         /// <summary>
@@ -51,32 +54,24 @@ namespace NationalDay_DDD
         /// </summary>
         class UnitedNationsSecurityCouncil : UnitedNations
         {
-            //美国 具体国家类1
-            private USA colleague1;
-            //伊拉克 具体国家类2
-            private Iraq colleague2;
-
-            public USA Colleague1
-            {
-                set { colleague1 = value; }
-            }
-            public Iraq Colleague2
-            {
-                set { colleague2 = value; }
-            }
+            List<Country> coll = new List<Country>();
 
             //重写声明函数
             public override void Declare(string message, Country colleague)
             {
                 //如果美国发布的声明，则伊拉克获取消息
-                if (colleague == colleague1)
+                foreach (var item in coll)
                 {
-                    colleague2.GetMessage(message);
-                }
-                else//反之亦然
-                {
-                    colleague1.GetMessage(message);
-                }
+                    if (item != colleague)
+                    {
+                        item.GetMessage(message);
+                    }
+                };
+            }
+
+            public override void Register(Country coun)
+            {
+                coll.Add(coun);
             }
         }
         /// <summary>
@@ -91,6 +86,8 @@ namespace NationalDay_DDD
             {
                 this.mediator = mediator;
             }
+
+            public abstract void GetMessage(string message);
         }
         /// <summary>
         /// 美国 具体国家类
@@ -110,7 +107,7 @@ namespace NationalDay_DDD
             }
 
             //获得消息
-            public void GetMessage(string message)
+            public override void GetMessage(string message)
             {
                 Console.WriteLine("美国获得对方信息：" + message);
             }
@@ -123,6 +120,7 @@ namespace NationalDay_DDD
             public Iraq(UnitedNations mediator)
                 : base(mediator)
             {
+
             }
             //声明方法，将声明内容较给抽象中介者 联合国
             public void Declare(string message)
@@ -132,7 +130,7 @@ namespace NationalDay_DDD
                 mediator.Declare(message, this);
             }
             //获得消息
-            public void GetMessage(string message)
+            public override void GetMessage(string message)
             {
                 Console.WriteLine("伊拉克获得对方信息：" + message);
             }
