@@ -1,7 +1,10 @@
-﻿using NationalDay_DDD.Domain.Model;
+﻿using MediatR;
+using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Infrastruct.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NationalDay_DDD
 {
@@ -10,6 +13,7 @@ namespace NationalDay_DDD
 
         static void Main(string[] args)
         {
+            #region 中介者模式
             //实例化 具体中介者 联合国安理会
             UnitedNationsSecurityCouncil UNSC = new UnitedNationsSecurityCouncil();
 
@@ -28,10 +32,19 @@ namespace NationalDay_DDD
 
             //伊拉克发表声明，美国收到信息
             c2.Declare("我们没有核武器，也不怕侵略。");
+            #endregion
+
+
+            #region 中介者模式
+            //步骤三：最后，通过mediator发送一个消息
+            //var response = await mediator.Publish(new Ping());
+            //Console.WriteLine(response); // "贠乾是个大帅哥"
+            #endregion
 
             Console.Read();
         }
 
+        #region 中介者模式相关代码
         /// <summary>
         /// 联合国机构抽象类
         /// 抽象中介者
@@ -133,6 +146,23 @@ namespace NationalDay_DDD
             public override void GetMessage(string message)
             {
                 Console.WriteLine("伊拉克获得对方信息：" + message);
+            }
+        }
+        #endregion
+
+        //请求响应方式(request/response)，三步走：
+        //步骤一：创建一个消息对象，需要实现IRequest,或IRequest<> 接口，表明该对象是处理器的一个对象
+        public class Ping : IRequest<string>
+        {
+
+        }
+
+        //步骤二：创建一个处理器对象
+        public class PingHandler : IRequestHandler<Ping, string>
+        {
+            public Task<string> Handle(Ping request, CancellationToken cancellationToken)
+            {
+                return Task.FromResult("贠乾是个大帅哥");
             }
         }
     }
