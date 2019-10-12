@@ -13,9 +13,8 @@ namespace NationalDay_DDD.Domain.Model
 
         }
 
-        public User(int id,string name,string email,string phone,DateTime birthday,Address address)
+        public User(string name,string email,string phone,DateTime birthday,Address address)
         {
-            Id = id;
             Name = name;
             Email = email;
             Phone = phone;
