@@ -50,26 +50,26 @@ namespace NationalDay_DDD.Domain.CommandHandlers
             // RegisterUserCommand命令的处理程序
             // 整个命令处理程序的核心都在这里
             // 不仅包括命令验证的收集，持久化，还有领域事件和通知的添加
-            public Task<Unit> Handle(RegisterUserCommand message, CancellationToken cancellationToken)
+            public Task<Unit> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
             {
                 // 命令验证
-                if (!message.IsValid())
+                if (!request.IsValid())
                 {
                     // 错误信息收集
-                    NotifyValidationErrors(message);
+                    NotifyValidationErrors(request);
                     return Task.FromResult(new Unit());
                 }
 
             // 实例化领域模型，这里才真正的用到了领域模型
             // 注意这里是通过构造函数方法实现
             // 注意这里是通过构造函数方法实现
-            var address = new Address(message.Province, message.City,
-            message.County, message.Street);
-            var customer = new User(message.Name, message.Email, message.Phone, message.BirthDate,address);
+            var address = new Address(request.Province, request.City,
+            request.County, request.Street);
+            var user = new User(request.Name, request.Email, request.Phone, request.BirthDate,address);
 
                 // 判断邮箱是否存在
                 // 这些业务逻辑，当然要在领域层中（领域命令处理程序中）进行处理
-                if (_userRepository.GetByEmail(customer.Email) != null)
+                if (_userRepository.GetByEmail(user.Email) != null)
                 {
                     //这里对错误信息进行发布，目前采用缓存形式
                     List<string> errorInfo = new List<string>() { "该用户邮箱已被占用！" };
@@ -78,7 +78,7 @@ namespace NationalDay_DDD.Domain.CommandHandlers
                 }
 
                 // 持久化
-                _userRepository.Add(customer);
+                _userRepository.Add(user);
 
                 // 统一提交
                 if (Commit())
