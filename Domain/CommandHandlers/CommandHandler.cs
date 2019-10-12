@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using NationalDay_DDD.Core.Bus;
 using NationalDay_DDD.Core.Commands;
-using NationalDay_DDD.Core.Uow;
+using NationalDay_DDD.Domain.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NationalDay_DDD.Core.CommandHandlers
+namespace NationalDay_DDD.Domain.CommandHandlers
 {
     /// <summary>
     /// 领域命令处理程序
@@ -42,14 +42,14 @@ namespace NationalDay_DDD.Core.CommandHandlers
             List<string> errorInfo = new List<string>();
             foreach (var error in message.ValidationResult.Errors)
             {
-                //errorInfo.Add(error.ErrorMessage);
+                errorInfo.Add(error.ErrorMessage);
 
                 //将错误信息提交到事件总线，派发出去
                 //_bus.RaiseEvent(new DomainNotification("", error.ErrorMessage));
             }
 
             //将错误信息收集一：缓存方法（错误示范）
-            //_cache.Set("ErrorData", errorInfo);
+            _cache.Set("ErrorData", errorInfo);
         }
 
 

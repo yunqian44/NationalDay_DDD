@@ -1,9 +1,12 @@
 ﻿using MediatR;
+using MediatR.Internal;
 using NationalDay_DDD.Core.Bus;
 using NationalDay_DDD.Core.Commands;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NationalDay_DDD.Infrastruct.Bus
@@ -15,10 +18,14 @@ namespace NationalDay_DDD.Infrastruct.Bus
     {
         //构造函数注入
         private readonly IMediator _mediator;
-
-        public InMemoryBus(IMediator mediator)
+        //注入服务工厂
+        private readonly ServiceFactory _serviceFactory;
+        private static readonly ConcurrentDictionary<Type, object> _requestHandlers = new ConcurrentDictionary<Type, object>();
+       
+        public InMemoryBus(IMediator mediator,ServiceFactory serviceFactory)
         {
             _mediator = mediator;
+            _serviceFactory = serviceFactory;
         }
 
         /// <summary>
@@ -31,7 +38,9 @@ namespace NationalDay_DDD.Infrastruct.Bus
         public Task SendCommand<T>(T command) where T : Command
         {
             return _mediator.Send(command);//这里要注意下 command 对象 command 得继承IRequest
-        }
 
+            //注意！这个仅仅是用来测试和研究源码的，请开发的时候不要使用这个
+            //return Send(command);//请注意 入参 的类型
+        }
     }
 }

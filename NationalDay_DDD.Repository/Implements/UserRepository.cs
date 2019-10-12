@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NationalDay_DDD.Domain.Interface;
 using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Infrastruct.Data.Context;
 using NationalDay_DDD.Infrastruct.Factory;
-using NationalDay_DDD.Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NationalDay_DDD.Repository.Implements
@@ -19,7 +20,7 @@ namespace NationalDay_DDD.Repository.Implements
 
         public User GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            return DbSet.AsNoTracking().FirstOrDefault(c => c.Email == email);
         }
     }
 }

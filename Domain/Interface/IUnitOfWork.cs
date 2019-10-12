@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NationalDay_DDD.Core.Uow
+namespace NationalDay_DDD.Domain.Interface
 {
     /// 工作单元接口
     /// </summary>

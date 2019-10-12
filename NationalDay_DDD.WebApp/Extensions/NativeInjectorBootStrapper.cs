@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using NationalDay_DDD.Application.Implements;
 using NationalDay_DDD.Application.Interface;
+using NationalDay_DDD.Core.Bus;
+using NationalDay_DDD.Domain.CommandHandlers;
+using NationalDay_DDD.Domain.Commands;
+using NationalDay_DDD.Domain.Interface;
+using NationalDay_DDD.Infrastruct.Bus;
 using NationalDay_DDD.Infrastruct.Data.Context;
+using NationalDay_DDD.Infrastruct.UoW;
 using NationalDay_DDD.Repository.Implements;
-using NationalDay_DDD.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +26,17 @@ namespace NationalDay_DDD.WebApp.Extensions
         {
 
             // ASP.NET HttpContext dependency
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // ASP.NET Authorization Polices
             //services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
             // 注入 应用层Application
             services.AddScoped<IUserService, UserService>();
 
+
+
             // 命令总线Domain Bus (Mediator)
-            //services.AddScoped<IMediatorHandler, InMemoryBus>();
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
 
 
             // Domain - Events
@@ -43,24 +52,23 @@ namespace NationalDay_DDD.WebApp.Extensions
 
             // 领域层 - 领域命令
             // 将命令模型和命令处理程序匹配
-            //services.AddScoped<IRequestHandler<RegisterStudentCommand, Unit>, StudentCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterUserCommand, Unit>, UserCommandHandler>();
             //services.AddScoped<IRequestHandler<UpdateStudentCommand, Unit>, StudentCommandHandler>();
             //services.AddScoped<IRequestHandler<RemoveStudentCommand, Unit>, StudentCommandHandler>();
 
             // 领域层 - Memory
-            //services.AddSingleton<IMemoryCache>(factory =>
-            //{
-            //    var cache = new MemoryCache(new MemoryCacheOptions());
-            //    return cache;
-            //});
+            services.AddSingleton<IMemoryCache>(factory =>
+            {
+                var cache = new MemoryCache(new MemoryCacheOptions());
+                return cache;
+            });
 
 
 
             // 注入 基础设施层 - 数据层
             services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddDbContext<UserContext>(options =>
-            //options.UseMySQL(Configuration.GetConnectionString("SchoolConnection")));
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<UserContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
             // 注入 基础设施层 - 事件溯源

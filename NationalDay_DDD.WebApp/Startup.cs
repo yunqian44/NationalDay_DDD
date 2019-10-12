@@ -9,15 +9,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NationalDay_DDD.Application.Implements;
 using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Core.Bus;
+using NationalDay_DDD.Domain.CommandHandlers;
+using NationalDay_DDD.Domain.Commands;
 using NationalDay_DDD.Infrastruct.Bus;
 using NationalDay_DDD.Infrastruct.Data.Context;
+using NationalDay_DDD.Infrastruct.UoW;
 using NationalDay_DDD.Repository.Implements;
-using NationalDay_DDD.Repository.Interface;
 using NationalDay_DDD.WebApp.Extensions;
 
 namespace NationalDay_DDD.WebApp
@@ -53,19 +56,32 @@ namespace NationalDay_DDD.WebApp
             services.AddMediatR(typeof(Startup));
 
             // 注入 Application 应用层
-            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IUserService, UserService>();
 
             // 命令总线Domain Bus (Mediator)
-            services.AddScoped<IMediatorHandler, InMemoryBus>();
+            //services.AddScoped<IMediatorHandler, InMemoryBus>();
+
+            //services.AddScoped<IRequestHandler<RegisterUserCommand, Unit>, UserCommandHandler>();
+
+
+            // 领域层 - Memory
+            //services.AddSingleton<IMemoryCache>(factory =>
+            //{
+            //    var cache = new MemoryCache(new MemoryCacheOptions());
+            //    return cache;
+            //});
 
             // 注入 Infra - Data 基础设施数据层
-            services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<UserContext>();
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
             // .NET Core 原生依赖注入
             // 单写一层用来添加依赖项，从展示层 Presentation 中隔离
-            //NativeInjectorBootStrapper.RegisterServices(services);
+            NativeInjectorBootStrapper.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

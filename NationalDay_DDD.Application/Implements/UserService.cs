@@ -3,8 +3,8 @@ using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Application.ViewModel;
 using NationalDay_DDD.Core.Bus;
 using NationalDay_DDD.Domain.Commands;
+using NationalDay_DDD.Domain.Interface;
 using NationalDay_DDD.Domain.Model;
-using NationalDay_DDD.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +23,6 @@ namespace NationalDay_DDD.Application.Implements
         private readonly IUserRepository _UserRepository;
         // 用来进行DTO
         private readonly IMapper _mapper;
-
         //中介者 总线
         private readonly IMediatorHandler _bus;
 
@@ -32,7 +31,10 @@ namespace NationalDay_DDD.Application.Implements
             GC.SuppressFinalize(this);
         }
 
-        public UserService(IUserRepository userRepository,IMapper mapper, IMediatorHandler bus) 
+        public UserService(
+            IUserRepository userRepository,
+            IMapper mapper, 
+            IMediatorHandler bus) 
         {
             _UserRepository = userRepository;
             _mapper = mapper;
@@ -57,7 +59,10 @@ namespace NationalDay_DDD.Application.Implements
 
         public void Register(UserViewModel userViewModel)
         {
+            //这里引入领域设计中的写命令 还没有实现
+            //请注意这里如果是平时的写法，必须要引入User领域模型，会造成污染
 
+            #region 校验
             //RegisterUserCommand registerUserCommand = new RegisterUserCommand(userViewModel.........ewModel.Phone);
             ////如果命令无效，证明有错误
             //if (!registerUserCommand.IsValid())
@@ -69,10 +74,16 @@ namespace NationalDay_DDD.Application.Implements
 
             //    //对错误进行记录，还需要抛给前台
             //    ViewBag.ErrorData = errorInfo;
-            //}
+            //} 
+            #endregion
 
-            _UserRepository.Add(_mapper.Map<User>(userViewModel));
-            _UserRepository.SaveChanges();
+            //_UserRepository.Add(_mapper.Map<User>(userViewModel));
+            //_UserRepository.SaveChanges();
+
+            var registerCommand = _mapper.Map<RegisterUserCommand>(userViewModel);
+
+            //领域命令请求
+            _bus.SendCommand(registerCommand);
         }
 
         public void Remove(int id)

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NationalDay_DDD.Core.Models;
+using NationalDay_DDD.Domain.Interface;
 using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Infrastruct.Data.Context;
-using NationalDay_DDD.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
