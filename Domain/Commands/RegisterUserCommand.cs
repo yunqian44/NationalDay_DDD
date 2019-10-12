@@ -12,12 +12,16 @@ namespace NationalDay_DDD.Domain.Commands
     public class RegisterUserCommand : UserCommand
     {
         // set 受保护，只能通过构造函数方法赋值
-        public RegisterUserCommand(string name, string email, DateTime birthDate, string phone)
+        public RegisterUserCommand(string name, string email, DateTime birthDate, string phone, string province, string city, string county, string street)
         {
             Name = name;
             Email = email;
             BirthDate = birthDate;
             Phone = phone;
+            Province = province;
+            City = city;
+            County = county;
+            Street = street;
         }
 
         // 重写基类中的 是否有效 方法
