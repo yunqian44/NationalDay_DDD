@@ -1,4 +1,5 @@
 ﻿using NationalDay_DDD.Core.Commands;
+using NationalDay_DDD.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,5 +21,16 @@ namespace NationalDay_DDD.Core.Bus
         /// <param name="command"> 命令模型，比如RegisterUserCommand </param>
         /// <returns></returns>
         Task SendCommand<T>(T command) where T : Command;
+
+
+        /// <summary>
+        /// 引发事件，通过总线，发布事件
+        /// </summary>
+        /// <typeparam name="T"> 泛型 继承 Event：INotification</typeparam>
+        /// <param name="event"> 事件模型，比如UserRegisteredEvent，</param>
+        /// 请注意一个细节：这个命名方法和Command不一样，一个是RegisterUserCommand注册用户命令之前,
+        /// 一个是RegisterUserCommand用户被注册事件之后
+        /// <returns></returns>
+        Task RaiseEvent<T>(T @event) where T : Event;
     }
 }
