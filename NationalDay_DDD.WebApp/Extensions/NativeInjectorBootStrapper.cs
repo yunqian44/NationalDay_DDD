@@ -6,8 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using NationalDay_DDD.Application.Implements;
 using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Core.Bus;
+using NationalDay_DDD.Core.Notifications;
 using NationalDay_DDD.Domain.CommandHandlers;
 using NationalDay_DDD.Domain.Commands;
+using NationalDay_DDD.Domain.EventHandlers;
+using NationalDay_DDD.Domain.Events;
 using NationalDay_DDD.Domain.Interface;
 using NationalDay_DDD.Infrastruct.Bus;
 using NationalDay_DDD.Infrastruct.Data.Context;
@@ -43,9 +46,9 @@ namespace NationalDay_DDD.WebApp.Extensions
             // 将事件模型和事件处理程序匹配注入
 
             // 领域通知
-            //services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             // 领域事件
-            //services.AddScoped<INotificationHandler<StudentRegisteredEvent>, StudentEventHandler>();
+            services.AddScoped<INotificationHandler<UserRegisteredEvent>, UserEventHandler>();
             //services.AddScoped<INotificationHandler<StudentUpdatedEvent>, StudentEventHandler>();
             //services.AddScoped<INotificationHandler<StudentRemovedEvent>, StudentEventHandler>();
 

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Application.ViewModel;
+using NationalDay_DDD.Core.Notifications;
 using NationalDay_DDD.Domain.Commands;
 using System.Collections.Generic;
 
@@ -9,11 +12,22 @@ namespace NationalDay_DDD.WebApp.Controllers
 {
     public class UserController : Controller
     {
+        //
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        private IMemoryCache _cache;
+
+          // 将领域通知处理程序注入Controller
+        private readonly DomainNotificationHandler _notifications;
+
+        public UserController(IUserService userService,
+            IMemoryCache cache, 
+            INotificationHandler<DomainNotification> notifications)
         {
             _userService = userService;
+            _cache = cache;
+            // 强类型转换
+            _notifications = (DomainNotificationHandler)notifications;
         }
 
         // GET: User
@@ -42,6 +56,7 @@ namespace NationalDay_DDD.WebApp.Controllers
             try
             {
                 // TODO: Add insert logic here
+                //_cache.Remove("ErrorData");
                 //ViewBag.ErrorData = null;
                 // 视图模型验证
                 if (!ModelState.IsValid)
@@ -66,9 +81,21 @@ namespace NationalDay_DDD.WebApp.Controllers
                 //} 
                 #endregion
 
+
+
                 // 执行添加方法
                 _userService.Register(userViewModel);
-                ViewBag.Sucesso = "用户注册成功!";
+
+                #region 缓存用法
+                //var errorData = _cache.Get("ErrorData");
+                //if (errorData == null) 
+                #endregion
+
+                // 是否存在消息通知
+                if (!_notifications.HasNotifications())
+                    ViewBag.Sucesso = "用户注册成功！";
+
+                //ViewBag.Sucesso = "用户注册成功!";
                 return View(userViewModel);
             }
             catch
