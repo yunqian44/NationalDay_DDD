@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using NationalDay_DDD.Core.Bus;
 using NationalDay_DDD.Core.Commands;
+using NationalDay_DDD.Core.Notifications;
 using NationalDay_DDD.Domain.Interface;
 using System;
 using System.Collections.Generic;
@@ -45,11 +46,11 @@ namespace NationalDay_DDD.Domain.CommandHandlers
                 errorInfo.Add(error.ErrorMessage);
 
                 //将错误信息提交到事件总线，派发出去
-                //_bus.RaiseEvent(new DomainNotification("", error.ErrorMessage));
+                _bus.RaiseEvent(new DomainNotification("", error.ErrorMessage));
             }
 
             //将错误信息收集一：缓存方法（错误示范）
-            _cache.Set("ErrorData", errorInfo);
+            //_cache.Set("ErrorData", errorInfo);
         }
 
 

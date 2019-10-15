@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 using NationalDay_DDD.Core.Bus;
+using NationalDay_DDD.Core.Notifications;
 using NationalDay_DDD.Domain.Commands;
+using NationalDay_DDD.Domain.Events;
 using NationalDay_DDD.Domain.Interface;
 using NationalDay_DDD.Domain.Model;
 using NationalDay_DDD.Domain.Models;
@@ -69,8 +71,10 @@ namespace NationalDay_DDD.Domain.CommandHandlers
             if (_userRepository.GetByEmail(user.Email) != null)
             {
                 //这里对错误信息进行发布，目前采用缓存形式
-                List<string> errorInfo = new List<string>() { "该用户邮箱已被占用！" };
-                _cache.Set("ErrorData", errorInfo);
+                //List<string> errorInfo = new List<string>() { "该用户邮箱已被占用！" };
+                //_cache.Set("ErrorData", errorInfo);
+                //引发错误事件
+                _bus.RaiseEvent(new DomainNotification("","该邮箱已经被使用！"));
                 return Task.FromResult(new Unit());
             }
 
@@ -84,6 +88,7 @@ namespace NationalDay_DDD.Domain.CommandHandlers
                 // 比如欢迎用户注册邮件呀，短信呀等
 
                 // waiting....
+                _bus.RaiseEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email, user.Birthday, user.Phone));
             }
 
             return Task.FromResult(new Unit());
