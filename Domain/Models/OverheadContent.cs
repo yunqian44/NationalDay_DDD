@@ -8,7 +8,7 @@ namespace NationalDay_DDD.Domain.Models
     /// <summary>
     /// 开销内容
     /// </summary>
-    public class OverheadContent : AggregateRoot<OverheadContent>
+    public class OverheadContent : Entity
     {
         public OverheadContent()
         {

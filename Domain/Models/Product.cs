@@ -5,7 +5,9 @@ using System.Text;
 
 namespace NationalDay_DDD.Domain.Models
 {
-    // 商品类
+    /// <summary>
+    /// 商品
+    /// </summary>
     public class Product : AggregateRoot<Product>
     {
         /// <summary>

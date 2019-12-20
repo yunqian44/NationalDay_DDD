@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NationalDay_DDD.Domain.Models
 {
-    public class OverheadItem:AggregateRoot<OverheadItem>
+    public class OverheadItem: Entity
     {
         //开销内容
         public OverheadContent Content { get; private set; }
