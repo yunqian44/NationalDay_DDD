@@ -6,7 +6,7 @@ using System.Text;
 namespace NationalDay_DDD.Domain.Models
 {
     /// <summary>
-    /// 商品
+    /// 商品类
     /// </summary>
     public class Product : AggregateRoot<Product>
     {
@@ -24,5 +24,15 @@ namespace NationalDay_DDD.Domain.Models
         /// 单价
         /// </summary>
         public decimal UnitPrice { get; set; }
+
+        /// <summary>
+        /// 封面图片
+        /// </summary>
+        public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// 是否是新品
+        /// </summary>
+        public bool IsNew { get; set; }
     }
 }
