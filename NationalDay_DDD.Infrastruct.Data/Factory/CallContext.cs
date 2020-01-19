@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace NationalDay_DDD.Infrastruct
+namespace NationalDay_DDD.Infrastruct.Factory
 {
     //net core 无法使用CallContext，这里构造一个
     public static class CallContext

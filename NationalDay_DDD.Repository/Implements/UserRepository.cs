@@ -12,10 +12,10 @@ namespace NationalDay_DDD.Repository.Implements
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        public UserRepository(UserContext context)
-        : base(context)
-        {
 
+        public override void GetDb()
+        {
+            Db = AbstractDbFactory.GetUserCurrentDbContext();
         }
 
         public User GetByEmail(string email)
