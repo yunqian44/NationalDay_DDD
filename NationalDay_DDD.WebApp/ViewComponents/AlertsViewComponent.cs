@@ -34,7 +34,7 @@ namespace NationalDay_DDD.WebApp.ViewComponents
             // 从通知处理程序中，获取全部通知信息，并返回给前台
             var notificacoes = await Task.FromResult((_notifications.GetNotifications()));
             //遍历错误信息，赋值给 ViewData.ModelState
-            notificacoes?.ForEach(c => ViewData.ModelState.AddModelError(string.Empty, c));
+            notificacoes?.ForEach(c => ViewData.ModelState.AddModelError(string.Empty, c.Value));
             return View();
         }
     }

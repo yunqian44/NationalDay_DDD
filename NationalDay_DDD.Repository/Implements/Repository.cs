@@ -16,13 +16,15 @@ namespace NationalDay_DDD.Repository.Implements
     /// <typeparam name="TAggregateRoot"></typeparam>
     public abstract class Repository<TEntity> :IRepository<TEntity> where TEntity : class
     {
-        protected readonly UserContext Db;
+        protected  DbContext Db;
 
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(UserContext context)
+        public abstract void GetDb();//抽象方法，子类必须实现
+
+        public Repository()
         {
-            Db = context;
+            GetDb();//抽象方法
             DbSet = Db.Set<TEntity>();
         }
 

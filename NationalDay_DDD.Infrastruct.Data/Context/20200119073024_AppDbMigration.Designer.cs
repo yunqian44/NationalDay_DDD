@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NationalDay_DDD.Infrastruct.Data.Context;
 
-namespace NationalDay_DDD.Infrastruct.Migrations
+namespace NationalDay_DDD.Infrastruct.Context
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20190930103328_Init")]
-    partial class Init
+    [Migration("20200119073024_AppDbMigration")]
+    partial class AppDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("NationalDay_DDD.Domain.Model.User", b =>
                 {

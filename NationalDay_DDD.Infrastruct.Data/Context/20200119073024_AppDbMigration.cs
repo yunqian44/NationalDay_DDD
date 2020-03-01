@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace NationalDay_DDD.Infrastruct.Migrations
+namespace NationalDay_DDD.Infrastruct.Context
 {
-    public partial class Init : Migration
+    public partial class AppDbMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
