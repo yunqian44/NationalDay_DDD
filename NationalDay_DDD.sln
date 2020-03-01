@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.Repository"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.WebApp", "NationalDay_DDD.WebApp\NationalDay_DDD.WebApp.csproj", "{E8DDA581-979D-4714-BB1C-8690C4C67438}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NationalDay_DDD.UTest", "NationalDay_DDD\NationalDay_DDD.UTest.csproj", "{011FBED8-8112-455E-815F-2FE74B6A92E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.UTest", "NationalDay_DDD\NationalDay_DDD.UTest.csproj", "{011FBED8-8112-455E-815F-2FE74B6A92E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NationalDay_DDD.UnitTest", "NationalDay_DDD.UnitTest\NationalDay_DDD.UnitTest.csproj", "{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{011FBED8-8112-455E-815F-2FE74B6A92E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
