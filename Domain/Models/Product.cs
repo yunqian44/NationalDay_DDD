@@ -16,6 +16,11 @@ namespace NationalDay_DDD.Domain.Models
         public string Name { get; set; }
 
         /// <summary>
+        /// 类别
+        /// </summary>
+        public Category CategoryType { get; set; }
+
+        /// <summary>
         /// 商品描述
         /// </summary>
         public string Description { get; set; }

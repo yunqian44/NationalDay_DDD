@@ -11,6 +11,7 @@ namespace NationalDay_DDD.Infrastruct.Context
         {
 
         }
+
         public DbSet<ProductContext> Products { get; set; }
     }
 }
