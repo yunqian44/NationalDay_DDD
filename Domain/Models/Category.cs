@@ -8,7 +8,7 @@ namespace NationalDay_DDD.Domain.Models
     /// <summary>
     /// 类别
     /// </summary>
-    public class Category:AggregateRoot<Category>
+    public class Category: AggregateRoot<Category>
     {
         /// <summary>
         /// 类别名称
