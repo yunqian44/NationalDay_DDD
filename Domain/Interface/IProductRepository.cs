@@ -22,5 +22,7 @@ namespace NationalDay_DDD.Domain.Interface
         /// <returns></returns>
         Task<List<Product>> GetNewProducts<S>(int pageSize, int pageIndex, bool isAsc, Expression<Func<Product, bool>> conditionsLambda, Expression<Func<Product, S>> orderByLambda);
         #endregion
+
+
     }
 }
