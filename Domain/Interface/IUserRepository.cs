@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NationalDay_DDD.Domain.Interface
 {
@@ -11,6 +12,6 @@ namespace NationalDay_DDD.Domain.Interface
     public interface IUserRepository:IRepository<User>
     {
         //一些User独有的接口
-        User GetByEmail(string email);
+        Task<User> GetByEmail(string email);
     }
 }
