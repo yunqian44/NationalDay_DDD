@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\AccountBook.cs" />
+    <Compile Remove="Models\Itinerary.cs" />
+    <Compile Remove="Models\ItineraryNote.cs" />
+    <Compile Remove="Models\ItineraryTime.cs" />
+    <Compile Remove="Models\OverheadContent.cs" />
+    <Compile Remove="Models\OverheadItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NationalDay_DDD.Core\NationalDay_DDD.Core.csproj" />
   </ItemGroup>
 

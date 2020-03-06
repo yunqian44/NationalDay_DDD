@@ -19,11 +19,11 @@ namespace NationalDay_DDD.Domain.Models
         /// <summary>
         /// 分类id
         /// </summary>
-        public int CategoryId { get; set; }
+        public int CategoryId { get; private set; }
 
         /// <summary>
         /// 产品id
         /// </summary>
-        public int ProductId { get; set; }
+        public int ProductId { get; private set; }
     }
 }
