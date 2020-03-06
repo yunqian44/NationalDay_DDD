@@ -26,7 +26,7 @@ namespace NationalDay_DDD.Infrastruct.Factory
         {
             //一次请求公用一个实例.上下文都可以做到切换
             //return new DataModelContainer();
-            DbContext db = CallContext.GetData("ProductContext") as ProductContext;
+            DbContext db = CallContext.GetData("ProductContext") as OnlineStoreContext;
             if (db == null)
             {
                 //db = new UserContext();
