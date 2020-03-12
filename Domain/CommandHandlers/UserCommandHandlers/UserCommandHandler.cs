@@ -88,7 +88,7 @@ namespace NationalDay_DDD.Domain.CommandHandlers
                 // 比如欢迎用户注册邮件呀，短信呀等
 
                 // waiting....
-                _bus.RaiseEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email, user.Birthday, user.Phone));
+                _bus.RaiseEvent(new UserRegisteredEvent(user.Name, user.Email, user.Birthday, user.Phone));
             }
 
             return Task.FromResult(new Unit());
