@@ -9,7 +9,7 @@ namespace NationalDay_DDD.Application.ViewModel
     public class UserViewModel
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "姓名必填")]
         [MinLength(2)]
@@ -35,11 +35,12 @@ namespace NationalDay_DDD.Application.ViewModel
         [DisplayName("Phone")]
         public string Phone { get; set; }
 
+        #region 联系地址
         /// <summary>
         /// 省份
         /// </summary>
         [Required(ErrorMessage = "省必填")]
-        [DisplayName("Province")]
+        [DisplayName("ContactProvince")]
         public string Province { get; set; }
 
         /// <summary>
@@ -56,5 +57,7 @@ namespace NationalDay_DDD.Application.ViewModel
         /// 街道
         /// </summary>
         public string Street { get; set; }
+        #endregion
+
     }
 }

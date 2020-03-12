@@ -8,9 +8,9 @@ namespace NationalDay_DDD.Domain.Models
 {
     public class UserRole : AggregateRoot<UserRole>
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
 
         public static UserRole CreateUserRole(User user, Role role)
         {

@@ -43,22 +43,14 @@ namespace NationalDay_DDD.Domain.Models
 
         public virtual User User { get; set; }
 
-        public Address DeliveryAddress
+        public Address Address
         {
             get
             {
-                return User.DeliveryAddress;
+                return User.Address;
             }
         }
-
-        // 在严格的业务系统中，金额往往以Money模式实现。有关Money模式，请参见：http://martinfowler.com/eaaCatalog/money.html
-        public decimal Subtotal
-        {
-            get
-            {
-                return this.OrderItems.Sum(p => p.ItemAmout);
-            }
-        }
+        
 
         #endregion 
 
@@ -68,27 +60,6 @@ namespace NationalDay_DDD.Domain.Models
             CreatedDate = DateTime.Now;
             Status = OrderStatus.Created;
         }
-
         #endregion 
-
-        #region Public Methods
-        /// <summary>
-        /// 当客户完成收货后，对销售订单进行确认。
-        /// </summary>
-        public void Confirm()
-        {
-            // 处理领域事件
-            DomainEvent.Handle<OrderConfirmedEvent>(new OrderConfirmedEvent(this) { ConfirmedDate = DateTime.Now, OrderId = this.Id, UserEmailAddress = this.User.Email });
-        }
-
-        /// <summary>
-        /// 处理发货。
-        /// </summary>
-        public void Dispatch()
-        {
-            // 处理领域事件
-            DomainEvent.Handle<OrderDispatchedEvent>(new OrderDispatchedEvent(this) { DispatchedDate = DateTime.Now, OrderId = this.Id, UserEmailAddress = this.User.Email });
-        }
-        #endregion
     }
 }

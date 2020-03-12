@@ -11,12 +11,15 @@ namespace NationalDay_DDD.Core.Events
     /// </summary>
     public abstract class Event : INotification
     {
+        public Guid Id { get; private set; }
+
         // 时间戳
         public DateTime Timestamp { get; private set; }
 
         // 每一个事件都是有状态的
         protected Event()
         {
+            Id = Guid.NewGuid();
             Timestamp = DateTime.Now;
         }
     }

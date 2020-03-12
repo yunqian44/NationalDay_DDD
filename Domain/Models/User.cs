@@ -13,14 +13,13 @@ namespace NationalDay_DDD.Domain.Model
 
         }
 
-        public User(string name,string email,string phone,DateTime birthday,Address contactAddress, Address deliveryAddress)
+        public User(string name,string email,string phone,DateTime birthday,Address address)
         {
             Name = name;
             Email = email;
             Phone = phone;
             Birthday = birthday;
-            ContactAddress = contactAddress;
-            DeliveryAddress = deliveryAddress;
+            Address = address;
         }
 
         /// <summary>
@@ -45,10 +44,7 @@ namespace NationalDay_DDD.Domain.Model
 
 
         //用户的联系地址
-        public Address ContactAddress { get; private set; }
-
-        //用户的发货地址
-        public Address DeliveryAddress { get; set; }
+        public Address Address { get; private set; }
 
     }
 }

@@ -9,6 +9,6 @@ namespace NationalDay_DDD.Core.Models
     /// </summary>
     public class Entity:IEntity
     {
-        public int Id { get ;private set; }
+        public Guid Id { get ;private set; }
     }
 }
