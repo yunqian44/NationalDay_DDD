@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.WebApp", "N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.UTest", "NationalDay_DDD\NationalDay_DDD.UTest.csproj", "{011FBED8-8112-455E-815F-2FE74B6A92E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NationalDay_DDD.UnitTest", "NationalDay_DDD.UnitTest\NationalDay_DDD.UnitTest.csproj", "{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NationalDay_DDD.UnitTest", "NationalDay_DDD.UnitTest\NationalDay_DDD.UnitTest.csproj", "{36E4DEC2-2306-4077-BD48-55F00F3D8FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

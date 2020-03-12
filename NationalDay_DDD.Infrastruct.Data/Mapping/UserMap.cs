@@ -35,7 +35,6 @@ namespace NationalDay_DDD.Infrastruct.Data.Mapping
 
             //处理值对象配置，否则会被视为实体
             builder.OwnsOne(p => p.Address);
-
             //可以对值对象进行数据库重命名，还有其他的一些操作，请参考官网
             //builder.OwnsOne(
             //    o => o.Address,
@@ -45,11 +44,7 @@ namespace NationalDay_DDD.Infrastruct.Data.Mapping
             //        sa.Property(p => p.Province).HasColumnName("Province");
             //        sa.Property(p => p.City).HasColumnName("City");
             //        sa.Property(p => p.Street).HasColumnName("Street");
-
-            //    }
-
-            //    );
-
+            //    });
 
             //注意：这是EF版本的写法，Core中不能使用！！！
             //builder.Property(c => c.Address.City)
