@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NationalDay_DDD.Application.Implements;
 using NationalDay_DDD.Application.Interface;
 using NationalDay_DDD.Core.Bus;
@@ -76,16 +77,18 @@ namespace NationalDay_DDD.WebApp
             //services.AddScoped<UserContext>();
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
             // .NET Core 原生依赖注入
             // 单写一层用来添加依赖项，从展示层 Presentation 中隔离
             NativeInjectorBootStrapper.RegisterServices(services);
+
+
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -100,13 +103,15 @@ namespace NationalDay_DDD.WebApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseRouting();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
